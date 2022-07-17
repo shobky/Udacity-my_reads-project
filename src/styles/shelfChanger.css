@@ -1,0 +1,30 @@
+.shelf_changer {
+  position: relative;
+}
+.shelf_changer select {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px 25px 25px 25px;
+  position: absolute;
+  right: -15px;
+  bottom: -10px;
+  border: none;
+  padding: 2px;
+  font-size: 20px;
+}
+.shelf_changer select:hover {
+  width: 51px;
+  height: 51px; 
+  cursor: pointer;
+}
+
+.change_shlef select {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px 25px 25px 25px;
+    position: absolute;
+    right: -75px;
+    bottom: -10px;
+    border: none;
+    padding: 2px;
+}

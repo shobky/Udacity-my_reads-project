@@ -1,0 +1,59 @@
+.library_containier {
+  background: rgb(196, 196, 196);
+  background: radial-gradient(
+    circle,
+    rgba(196, 196, 196, 1) 0%,
+    rgba(219, 219, 219, 1) 48%,
+    rgba(199, 199, 199, 1) 100%
+  );
+}
+
+.header {
+  margin-left: 100px;
+  font-size: 50px;
+  position: relative;
+  top: 20px;
+}
+.body {
+  margin-top: 120px;
+}
+.shelves {
+  margin-bottom: 25px;
+}
+
+.shlef_name {
+  font-size: 30px;
+  color: rgb(31, 29, 29);
+  margin-left: 120px;
+}
+.shelf_line{
+    width: 75vw;
+    height: 1.5px;
+    background-color: black;
+    border: none;
+    position: relative;
+    left: 200px;
+    margin-bottom: 25px;
+    margin-top: 3px;
+}
+.search_button {
+  color: white;
+  background-color: blueviolet;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 40px;
+  border-radius: 25px 25px 25px 25px;
+  font-family: monospace;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  text-decoration: none;
+}
+.search_button:hover {
+  background-color: rgb(115, 24, 199);
+  width: 51px;
+  height: 51px;
+  font-size: 41px;
+  cursor: pointer;
+}

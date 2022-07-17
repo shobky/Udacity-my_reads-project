@@ -1,0 +1,15 @@
+.book_container{
+    margin: 0 0 35px 35px ;
+}
+
+.book_title{
+    text-align: center;
+    width: 200px;
+    margin-top: 15px;
+
+}
+.book_author{
+    text-align: center;
+    width: 200px;
+
+}
