@@ -1,14 +1,15 @@
 import React from "react";
 import BooksInShelf from "./BooksInShelf";
+import '../styles/library.css'
 
-const Shelf = ({ shelves, shelf, books,onUpdateShelf }) => {
+const Shelf = ({ fetchBook, shelves, shelf, books,onUpdateShelf }) => {
   return (
     <div
-      style={{ minHeight:"62vh", display: "flex", justifyContent: "center", overflowX:'scroll' }}
+      style={{ width:"80vw", overflowX:'scroll' }}
       className="books_per_shelf"
     >
       {books.map((book) => (
-        <BooksInShelf shelves={shelves} onUpdateShelf={onUpdateShelf} key={book.id} shelf={shelf} book={book} />
+        <BooksInShelf fetchBook={fetchBook} shelves={shelves} onUpdateShelf={onUpdateShelf} key={book.id} shelf={shelf} book={book} />
       ))}
     </div>
   );

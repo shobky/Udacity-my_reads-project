@@ -1,10 +1,10 @@
 import Book from "./Book";
 
-const BooksPerShelf = ({ shelves, book, shelf, onUpdateShelf }) => {
+const BooksPerShelf = ({fetchBook, shelves, book, shelf, onUpdateShelf }) => {
   return (
-    <div>
+    <div style={{ position:"relative", right:"-100px",}}>
       {book.shelf === shelf.id ? (
-          <Book shelves={shelves} onUpdateShelf={onUpdateShelf} key={book.title} book={book} />
+          <Book fetchBook={fetchBook} shelves={shelves} onUpdateShelf={onUpdateShelf} key={book.title} book={book} />
       ) : (
         ""
       )}

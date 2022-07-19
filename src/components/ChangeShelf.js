@@ -38,7 +38,7 @@ const ChangeShelf = ({shelfClass, book, onUpdateShelf }) => {
         <option value="currentlyReading">currently reading</option>
         <option value="wantToRead">want to read</option>
         <option value="read">read</option>
-        <option disabled value="none">
+        <option  value="none">
           none
         </option>
         <option></option>

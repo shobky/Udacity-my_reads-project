@@ -1,31 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/search.css";
 import Book from "../components/Book";
 import { Link } from "react-router-dom";
 import { GrFormPreviousLink } from "react-icons/gr";
+import * as BooksAPI from '../utils/BooksAPI'
 
-const Search = ({ books, onUpdateShelf }) => {
-  const [query, setQuery] = useState("");
-
+const Search = ({handleSetBooks,books, shelves, searchedBooks, onChangeQuery, onUpdateShelf }) => {
   const heandleChange = (e) => {
-    setQuery(e.target.value);
+    onChangeQuery(e.target.value.toUpperCase());
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setQuery(query.trim());
-  };
-
-  const renderBooks =
-    query === ""
-      ? books
-      : books.filter((searched) =>
-          searched.title.toLowerCase().includes(query.toLowerCase())
-        );
-  // ) &&
-  // books.filter((searched) =>
-  //   searched.authors.toLowerCase().includes(query.toLowerCase())
-  // );
+  useEffect(() => {
+    BooksAPI.getAll().then((data) => {
+      handleSetBooks(data);
+    });
+  }, [books]);
 
   const shelfClass = "change_shlef";
 
@@ -34,22 +23,27 @@ const Search = ({ books, onUpdateShelf }) => {
       <Link to="/" className="back">
         <GrFormPreviousLink />
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <input
           className="search_input"
           placeholder="Search by Title/Author"
           type="text"
-          onChange={heandleChange}
+          onChange={(e) => heandleChange(e)}
         />
       </form>
       <div className="center">
         <div className="books_container">
-          {renderBooks.map((book) => (
-            <div key={book.title} className="book_in_search">
+          {searchedBooks.map((searchdBook) => (
+            <div key={searchdBook.id} className="book_in_search">
               <Book
                 shelfClass={shelfClass}
                 onUpdateShelf={onUpdateShelf}
-                book={book}
+                shelves={shelves}
+                book={searchdBook}
               />
             </div>
           ))}
