@@ -1,11 +1,4 @@
 .library_containier {
-  /* background: rgb(196, 196, 196);
-  background: radial-gradient(
-    circle,
-    rgba(196, 196, 196, 1) 0%,
-    rgba(219, 219, 219, 1) 48%,
-    rgba(199, 199, 199, 1) 100%
-  ); */
   background-color: rgb(212, 214, 86);
 }
 
@@ -47,11 +40,7 @@
   margin-top: 3px;
 }
 .books_per_shelf {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  column-gap: 140px;
-  height: 500px;
-  overflow: scroll;
+  display: flex;
 }
 .search_button {
   color: white;

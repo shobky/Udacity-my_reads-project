@@ -3,8 +3,6 @@ import * as BooksAPI from "./utils/BooksAPI";
 import { Routes, Route } from "react-router-dom";
 import Library from "./pages/Library";
 import Search from "./pages/Search";
-import BookDetails from "./pages/BookDetails";
-import Book from "./components/Book";
 
 const App = () => {
   const shelves = [
@@ -18,10 +16,11 @@ const App = () => {
       id: "read",
     },
   ];
+
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
   const [searchedBooks, setSearchedBooks] = useState([]);
-  const [book, setBook] = useState("");
+
 
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
@@ -29,19 +28,14 @@ const App = () => {
     });
   }, []);
 
-  const onChangeQuery = (inputWord) => {
-    setQuery(inputWord);
-  };
-
-  const handleSetBooks = (newData) => {
-    setBooks(newData);
+  const onChangeState = (event) => {
+    setBooks(event);
   };
 
   useEffect(() => {
     let active = true;
     if (query && active) {
       BooksAPI.search(query).then((data) => {
-        console.log(data);
         data.error ? setSearchedBooks([]) : setSearchedBooks(data);
       });
     }
@@ -51,7 +45,15 @@ const App = () => {
     };
   }, [query]);
 
+  const onChangeQuery = (inputWord) => {
+    setQuery(inputWord);
+  };
+
   const onUpdateShelf = (whichBook, whichShelf) => {
+    BooksAPI.get(whichBook.id).then((thisBook) => {
+      thisBook.shlef = whichShelf;
+      BooksAPI.update(thisBook, whichShelf);
+    });
     const updatedBooks = books.map((book) => {
       if (book.id === whichBook.id) {
         book.shelf = whichShelf;
@@ -63,10 +65,6 @@ const App = () => {
     BooksAPI.update(whichBook, whichShelf);
   };
 
-  const fetchBook = (book) => {
-    setBook(book);
-  };
-
   return (
     <div>
       <Routes>
@@ -75,9 +73,8 @@ const App = () => {
           element={
             <Library
               shelves={shelves}
-              onUpdateShelf={onUpdateShelf}
               books={books}
-              fetchBook={fetchBook}
+              onUpdateShelf={onUpdateShelf}
             />
           }
         />
@@ -85,27 +82,16 @@ const App = () => {
           path="search"
           element={
             <Search
-              handleSetBooks={handleSetBooks}
               onUpdateShelf={onUpdateShelf}
               shelves={shelves}
               onChangeQuery={onChangeQuery}
               searchedBooks={searchedBooks}
               query={query}
+              onChangeState={onChangeState}
               books={books}
             />
           }
         />
-        {/* <Route
-          path="book_details"
-          element={
-            <BookDetails
-              book={book}
-              onUpdateShelf={onUpdateShelf}
-              shelves={shelves}
-              books={books}
-            />
-          }
-        /> */}
       </Routes>
     </div>
   );

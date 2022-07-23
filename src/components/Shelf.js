@@ -1,18 +1,31 @@
 import React from "react";
 import BooksInShelf from "./BooksInShelf";
-import '../styles/library.css'
+import propTypes from "prop-types";
+import "../styles/library.css";
 
-const Shelf = ({ fetchBook, shelves, shelf, books,onUpdateShelf }) => {
+const Shelf = ({ onUpdateShelf, shelves, shelf, books }) => {
   return (
     <div
-      style={{ width:"80vw", overflowX:'scroll' }}
+      style={{ width: "80vw", overflowX: "scroll" }}
       className="books_per_shelf"
     >
       {books.map((book) => (
-        <BooksInShelf fetchBook={fetchBook} shelves={shelves} onUpdateShelf={onUpdateShelf} key={book.id} shelf={shelf} book={book} />
+        <BooksInShelf
+          onUpdateShelf={onUpdateShelf}
+          shelves={shelves}
+          key={book.id}
+          shelf={shelf}
+          book={book}
+        />
       ))}
     </div>
   );
 };
 
+Shelf.propTypes = {
+  onUpdateShelf: propTypes.func,
+  shleves: propTypes.array,
+  books: propTypes.array,
+  shelf: propTypes.object,
+};
 export default Shelf;

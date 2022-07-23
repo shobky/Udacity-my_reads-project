@@ -1,33 +1,11 @@
 import React from "react";
 import "../styles/shelfChanger.css";
+import propTyeps from 'prop-types';
 
-const ChangeShelf = ({shelfClass, book, onUpdateShelf }) => {
-  //   const [input, setInput] = useState("");
-
-  //   const camelize = (str) => {
-  //     return str
-  //       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-  //         return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  //       })
-  //       .replace(/\s+/g, "");
-  //   };
-  //   const handleChange = (e) => {
-  //     setInput({ name: e.value, id: camelize(e.value) });
-  //   };
-  //   const addShelf = (e) => {
-  //     e.preventDefault();
-  //     shelves.push(input);
-  //   };
-
+const ChangeShelf = ({ book, onUpdateShelf }) => {
+ 
   return (
-    <div className={`shelf_changer ${shelfClass}`}>
-      {/* <form onSubmit={addShelf}>
-        <input
-          onChange={(e) => handleChange(e.target)}
-          type="text"
-          placeholder="add a shelf"
-        />
-      </form> */}
+    <div className="shelf_changer">
       <select
         defaultValue={book.shelf ? book.shelf : "none"}
         onChange={(event) => onUpdateShelf(book, event.target.value)}
@@ -38,13 +16,16 @@ const ChangeShelf = ({shelfClass, book, onUpdateShelf }) => {
         <option value="currentlyReading">currently reading</option>
         <option value="wantToRead">want to read</option>
         <option value="read">read</option>
-        <option  value="none">
-          none
-        </option>
-        <option></option>
+        <option value="none">none</option>
       </select>
     </div>
   );
 };
+
+ChangeShelf.prototype = {
+book:propTyeps.array,
+onUpdateShelf:propTyeps.function
+
+}
 
 export default ChangeShelf;

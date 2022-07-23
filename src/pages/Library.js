@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import Shelf from "../components/Shelf";
 import "../styles/library.css";
-
-const Library = ({ fetchBook, shelves, books, onUpdateShelf }) => {
+import propTypes from 'prop-types';
+const Library = ({ onUpdateShelf, shelves, books }) => {
   return (
     <div className="library_containier">
       <h2 className="header">{`My Reads`}</h2>
@@ -14,7 +14,6 @@ const Library = ({ fetchBook, shelves, books, onUpdateShelf }) => {
             <hr className="shelf_line" />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Shelf
-                fetchBook={fetchBook}
                 onUpdateShelf={onUpdateShelf}
                 books={books}
                 shelves={shelves}
@@ -30,5 +29,12 @@ const Library = ({ fetchBook, shelves, books, onUpdateShelf }) => {
     </div>
   );
 };
+
+Library.propTypes = {
+  onUpdateShelf: propTypes.func,
+  shleves: propTypes.array,
+  books: propTypes.array
+
+}
 
 export default Library;
